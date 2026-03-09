@@ -16,18 +16,17 @@ TEST_CASES = [
 
 def calculate_tax(income):
     total_tax = 0
-    tax_bracket_index = 0
     low_threshold = 0
     for tax_bracket in TAX_BRACKETS:
         # if income is greater than current bracket, pay max amount for that bracket
         if income > tax_bracket['threshold']:
             total_tax += (min(income, tax_bracket['threshold']) - low_threshold) * (tax_bracket['percentage'] / 100)
-            tax_bracket_index += 1
             # set threshold as low threshold for next bracket
             low_threshold = tax_bracket['threshold']
         else:
+
             incomeToTax = income
-            incomeToTax = income - low_threshold
+            incomeToTax -= low_threshold
             total_tax += incomeToTax  * (tax_bracket['percentage'] / 100)
             break
     
